@@ -7,6 +7,7 @@ import { Message } from "../../client/notes/message.js";
 import type { NotesMessage } from "../../client/notes/message.js";
 import { NotesState, Submission } from "../../client/notes/model.js";
 import type { NotesModel } from "../../client/notes/model.js";
+import { acceptsDraft } from "../../client/notes/update.js";
 
 const noteItem = (h: HtmlBuilder<NotesMessage>, note: typeof Note.Type): Html =>
   h.keyed("li")(
@@ -65,10 +66,11 @@ const draftForm = (h: HtmlBuilder<NotesMessage>, model: NotesModel): Html => {
         h.Maxlength(NOTE_TEXT_MAX_LENGTH),
         h.OnInput((value) => Message.UpdatedDraft({ value })),
         h.AriaDescribedBy("draft-problem"),
+        h.Readonly(saving),
       ]),
       submissionProblem(h, model),
       h.button(
-        [h.Type("submit"), h.Disabled(saving)],
+        [h.Type("submit"), h.Disabled(!acceptsDraft(model))],
         [saving ? "Saving…" : "Save note"]
       ),
     ]

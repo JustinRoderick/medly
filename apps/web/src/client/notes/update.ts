@@ -15,6 +15,10 @@ const parseDraft = Schema.decodeUnknownOption(NoteText);
 
 const draftProblem = `Write between 1 and ${NOTE_TEXT_MAX_LENGTH} characters.`;
 
+export const acceptsDraft = (model: NotesModel): boolean =>
+  !Schema.is(Submission.Saving)(model.submission) &&
+  !Schema.is(NotesState.Loading)(model.notes);
+
 export const init = (): NotesReturn => ({
   commands: [ListNotes()],
   model: initialModel,
@@ -45,12 +49,7 @@ export const update = (model: NotesModel, message: NotesMessage): NotesReturn =>
     FailedListNotes: ({ message: problem }) => ({
       model: { ...model, notes: NotesState.Failed({ message: problem }) },
     }),
-    SubmittedDraft: () =>
-      Submission.match<NotesReturn>(model.submission, {
-        Editing: () => submit(model),
-        Rejected: () => submit(model),
-        Saving: () => ({ model }),
-      }),
+    SubmittedDraft: () => (acceptsDraft(model) ? submit(model) : { model }),
     SucceededAddNote: ({ note }) => ({
       model: {
         ...model,
@@ -69,7 +68,12 @@ export const update = (model: NotesModel, message: NotesMessage): NotesReturn =>
     SucceededListNotes: ({ notes }) => ({
       model: { ...model, notes: NotesState.Loaded({ notes }) },
     }),
-    UpdatedDraft: ({ value }) => ({
-      model: { ...model, draft: value, submission: Submission.Editing() },
-    }),
+    UpdatedDraft: ({ value }) =>
+      Submission.match<NotesReturn>(model.submission, {
+        Editing: () => ({ model: { ...model, draft: value } }),
+        Rejected: () => ({
+          model: { ...model, draft: value, submission: Submission.Editing() },
+        }),
+        Saving: () => ({ model }),
+      }),
   });

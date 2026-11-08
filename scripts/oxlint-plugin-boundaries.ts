@@ -207,7 +207,8 @@ const browserCapabilityModule = (filename: string, specifier: string) => {
 
   return (
     target !== null &&
-    (isWithin(target, "packages/capability") ||
+    (specifier.startsWith("@medly/") ||
+      isWithin(target, "packages/capability") ||
       isWithin(target, "packages/core") ||
       /^apps\/[^/]+\/src\/capabilities(?:\/|$)/u.test(target))
   );

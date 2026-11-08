@@ -61,6 +61,26 @@ describe("notes program", () => {
     });
   });
 
+  it("keeps the draft unchanged while a save is in flight", () => {
+    const saving = {
+      ...loaded,
+      draft: note.text,
+      submission: Submission.Saving(),
+    };
+
+    expect(
+      update(saving, Message.UpdatedDraft({ value: "typed while saving" }))
+    ).toStrictEqual({ model: saving });
+  });
+
+  it("does not save before the first list arrives", () => {
+    const loading = { ...initialModel, draft: note.text };
+
+    expect(update(loading, Message.SubmittedDraft())).toStrictEqual({
+      model: loading,
+    });
+  });
+
   it("keeps the draft and explains the failure when saving fails", () => {
     Story.story(
       update,

@@ -63,6 +63,18 @@ describe("medly-boundaries", () => {
       "no-browser-server-imports",
     ],
     [
+      "a feature importing a storage cartridge",
+      "apps/web/src/features/notes/fixture.ts",
+      'import { d1NoteStore } from "@medly/notes-d1";\nexport const used = d1NoteStore;\n',
+      "no-browser-server-imports",
+    ],
+    [
+      "a client importing the RPC Worker",
+      "apps/web/src/client/notes/fixture.ts",
+      'import RpcBackend from "@medly/api/rpc-worker";\nexport const used = RpcBackend;\n',
+      "no-browser-server-imports",
+    ],
+    [
       "a client importing the Worker runtime",
       "apps/web/src/client/notes/fixture.ts",
       'import { env } from "cloudflare:workers";\nexport const used = env;\n',
