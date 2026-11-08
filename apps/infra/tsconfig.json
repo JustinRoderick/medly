@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@effect/language-service",
+        "allowedUnstableApis": [
+          "@effect/platform-node/NodeServices",
+          "@effect/vitest",
+          "effect/http/FetchHttpClient",
+          "effect/http/HttpClient",
+          "effect/rpc/RpcClient",
+          "effect/rpc/RpcSerialization"
+        ]
+      }
+    ],
+    "allowImportingTsExtensions": true,
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "target": "ESNext"
+  },
+  "include": [
+    "alchemy.run.ts",
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "vitest.config.ts"
+  ]
+}

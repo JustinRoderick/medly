@@ -1,0 +1,50 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "globalDependencies": ["tsconfig.base.json"],
+  "tasks": {
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "test": {
+      "dependsOn": ["build", "^build"],
+      "outputs": []
+    },
+    "@medly/infra#test": {
+      "dependsOn": ["^build", "@medly/web#build"],
+      "outputs": []
+    },
+    "//#lint": {
+      "outputs": []
+    },
+    "//#typecheck-scripts": {
+      "outputs": []
+    },
+    "//#test-scripts": {
+      "outputs": []
+    },
+    "//#env:check": {
+      "cache": false,
+      "outputs": []
+    },
+    "//#lockfile:check": {
+      "cache": false,
+      "outputs": []
+    },
+    "check": {
+      "dependsOn": [
+        "//#lockfile:check",
+        "//#env:check",
+        "typecheck",
+        "//#lint",
+        "//#typecheck-scripts",
+        "//#test-scripts"
+      ],
+      "outputs": []
+    }
+  }
+}

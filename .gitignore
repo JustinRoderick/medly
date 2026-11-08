@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.turbo/
+coverage/
+**/.alchemy/
+*.log
+.DS_Store
+
+.agent_sources/github.com/
+
+.env
+.env.local
+.env.*.local
+env.d.ts
+
+.audit/

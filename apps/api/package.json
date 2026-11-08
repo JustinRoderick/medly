@@ -1,0 +1,30 @@
+{
+  "name": "@medly/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./rpc-worker": "./src/rpc-worker.ts"
+  },
+  "scripts": {
+    "check": "pnpm run typecheck",
+    "test": "vitest run",
+    "typecheck": "effect-tsrs diagnostics --project tsconfig.json --strict --type-check"
+  },
+  "dependencies": {
+    "@alchemy.run/cloudflare": "2.0.0-beta.85",
+    "@medly/capability": "workspace:*",
+    "@medly/core": "workspace:*",
+    "@medly/notes-d1": "workspace:*",
+    "alchemy": "2.0.0-beta.85",
+    "effect": "4.1.2"
+  },
+  "devDependencies": {
+    "@alchemy.run/test": "2.0.0-beta.85",
+    "@cloudflare/workers-types": "5.20261026.1",
+    "@effect/vitest": "4.1.2",
+    "@types/node": "24.19.2",
+    "typescript": "7.0.2",
+    "vitest": "5.0.5"
+  }
+}
