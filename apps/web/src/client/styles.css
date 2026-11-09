@@ -1,0 +1,110 @@
+:root {
+  color-scheme: light dark;
+  --ink: #1d1d1f;
+  --paper: #fbfbfa;
+  --muted: #6b6b70;
+  --line: #d9d9de;
+  --accent: #2f6f5e;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ececef;
+    --paper: #151517;
+    --muted: #a1a1a8;
+    --line: #34343a;
+    --accent: #7cc4ad;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+}
+
+.page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.75rem;
+}
+
+.draft {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.draft textarea {
+  min-height: 5rem;
+  padding: 0.75rem;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  resize: vertical;
+}
+
+.draft button {
+  justify-self: start;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  color: var(--paper);
+  background: var(--accent);
+  border: 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.draft button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.notes {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+}
+
+.note p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.note time,
+.empty {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.problem {
+  margin: 0;
+  color: #b42318;
+}
+
+.problem:empty {
+  display: none;
+}

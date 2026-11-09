@@ -1,0 +1,60 @@
+{
+  "name": "medly",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Medly: one typed program for the app and its cloud on the CAFE stack (Cloudflare, Alchemy, Foldkit, Effect).",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @medly/web dev",
+    "build": "turbo run build",
+    "check": "pnpm run lockfile:check && pnpm run env:check && turbo run typecheck typecheck-scripts test-scripts && pnpm run lint",
+    "lint": "ultracite check && oxfmt --check .",
+    "fix": "ultracite fix && oxfmt .",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck typecheck-scripts",
+    "typecheck-scripts": "effect-tsrs diagnostics --project tsconfig.json --strict --type-check",
+    "test-scripts": "vitest run --root scripts",
+    "env:check": "varlock load",
+    "lockfile:check": "pnpm --config.optimistic-repeat-install=false install --frozen-lockfile --offline --lockfile-only --ignore-scripts",
+    "alchemy": "pnpm --filter @medly/infra exec alchemy",
+    "infra:plan": "pnpm --filter @medly/infra plan",
+    "infra:deploy": "pnpm --filter @medly/infra deploy",
+    "infra:destroy": "pnpm --filter @medly/infra destroy",
+    "infra:dev": "pnpm --filter @medly/infra dev",
+    "vendor:agent-sources": "./scripts/vendor-agent-sources.sh",
+    "prepare": "if git rev-parse --git-dir >/dev/null 2>&1; then lefthook install; fi"
+  },
+  "devDependencies": {
+    "@foldkit/oxlint-plugin": "0.15.4",
+    "@oxlint/plugins": "1.88.0",
+    "@types/node": "24.19.2",
+    "@yielded/effect-tsrs": "0.2.3",
+    "effect": "4.1.2",
+    "lefthook": "2.2.2",
+    "oxfmt": "0.73.0",
+    "oxlint": "1.88.0",
+    "oxlint-tsgolint": "7.0.2004",
+    "turbo": "2.11.9",
+    "typescript": "7.0.2",
+    "ultracite": "8.0.1",
+    "varlock": "1.23.0",
+    "vitest": "5.0.5"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.3.0",
+      "onFail": "error"
+    },
+    "runtime": {
+      "name": "node",
+      "version": ">=24.18.0",
+      "onFail": "warn"
+    }
+  },
+  "engines": {
+    "node": ">=24.18.0",
+    "pnpm": ">=11.1.2"
+  },
+  "packageManager": "pnpm@11.3.0"
+}

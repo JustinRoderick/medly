@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*.ts", "test/**/*.ts", "*.config.ts"],
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@effect/language-service",
+        "allowedUnstableApis": [
+          "@effect/vitest",
+          "effect/crypto/SecureRandom",
+          "effect/http/FetchHttpClient",
+          "effect/http/HttpRouter",
+          "effect/rpc/RpcClient",
+          "effect/rpc/RpcSerialization",
+          "effect/rpc/RpcServer",
+          "effect/rpc/RpcTest"
+        ]
+      }
+    ],
+    "allowImportingTsExtensions": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"]
+  }
+}

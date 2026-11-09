@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@effect/language-service",
+        "allowedUnstableApis": [
+          "@effect/vitest",
+          "effect/http/HttpRouter",
+          "effect/rpc/Rpc",
+          "effect/rpc/RpcClient",
+          "effect/rpc/RpcGroup",
+          "effect/rpc/RpcSerialization",
+          "effect/rpc/RpcServer",
+          "effect/rpc/RpcTest"
+        ]
+      }
+    ]
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts", "vitest.config.ts"]
+}

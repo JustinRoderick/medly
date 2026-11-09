@@ -1,0 +1,48 @@
+{
+  "name": "@medly/capability",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "type": "module",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./contract": {
+      "types": "./src/contract.ts",
+      "default": "./dist/contract.js"
+    },
+    "./implement": {
+      "types": "./src/implement.ts",
+      "default": "./dist/implement.js"
+    },
+    "./rpc": {
+      "types": "./src/rpc.ts",
+      "default": "./dist/rpc.js"
+    },
+    "./rpc-group": {
+      "types": "./src/rpc-group.ts",
+      "default": "./dist/rpc-group.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "pnpm run typecheck",
+    "test": "vitest run",
+    "typecheck": "effect-tsrs diagnostics --project tsconfig.json --strict --type-check"
+  },
+  "dependencies": {
+    "effect": "4.1.2"
+  },
+  "devDependencies": {
+    "@effect/vitest": "4.1.2",
+    "@types/node": "24.19.2",
+    "typescript": "7.0.2",
+    "vitest": "5.0.5"
+  }
+}
