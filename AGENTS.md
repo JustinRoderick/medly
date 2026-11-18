@@ -9,7 +9,7 @@ Medly is built on the CAFE stack (Cloudflare, Alchemy, Foldkit, Effect) and foll
 Workspace `package.json` files declare the pinned stack. Keep every version exact. Record drift instead of silently migrating.
 
 - pnpm workspaces and Turborepo `2.11.9` (`apps/*`, `packages/*`)
-- Node `>=24.18.0` and pnpm `11.3.0`; never install with npm or Bun
+- Node `>=24.18.0` and pnpm `11.11.0`; never install with npm or Bun
 - Effect `4.1.2` everywhere; every Effect package resolves to one runtime
 - Alchemy `2.0.0-beta.85` with `@alchemy.run/cloudflare` for every cloud resource, declared in `apps/infra/alchemy.run.ts` and authenticated through Alchemy profiles, never through env vars in this repo. `@alchemy.run/test` runs Worker runtime tests under local workerd
 - Foldkit `0.170.0`, `@foldkit/ui` `0.170.0`, and `@foldkit/vite-plugin` `0.29.0` for the web UI, server-rendered and prerendered
