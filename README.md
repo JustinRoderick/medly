@@ -6,7 +6,7 @@ The starter feature is a small notes app: write a note, see the newest notes fir
 
 ## Run it
 
-Node `24.18.0` or newer and pnpm `11.11.0` are required (`.nvmrc`, `engines`, `packageManager`).
+Node `24.18.0` or newer and pnpm `12.21.0` are required (`.nvmrc`, `engines`, `packageManager`).
 
 ```sh
 corepack enable
